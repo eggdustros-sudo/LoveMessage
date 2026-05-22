@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Prescript Terminal</title>
+    <title>MyLoveMessageForChescka</title>
 
     <style>
         body {
@@ -44,23 +44,26 @@
 <body>
 
 <div class="box">
-    <h1>PRESCRIPT RECEIVED</h1>
+    <h1>MY LOVE MESSAGE FOR CHESCKA</h1>
     <p id="text">Click anywhere to continue.</p>
 </div>
 
 <!-- Typing Sound -->
-<audio id="typeSound">
-    <source src="Prescript.mp3" type="audio/mpeg">
+<audio id="TypeSound">
+    <source src="index_message_2.wav" type="audio/mpeg">
 </audio>
 
+<audio id="endSound">
+    <source src="index_message_1.wav" type="audio/mpeg">
+</audio>
 <script>
 
 const messages = [
-    "Await further instructions.",
-    "Do not look behind you.",
-    "Proceed to the designated corridor.",
-    "The Prescript has acknowledged your compliance.",
-    "Further observation is unnecessary."
+    "Hello My Love, You Are The Most Beautiful Person I Have Ever Met.",
+    "I Want You To Know How Much I Care About You.",
+    "You Make My Heart Skip A Beat Every Time I See You.",
+    "You Are The Light Of My Life.",
+    "I Love You More Than Words Can Express."
 ];
 
 let index = 0;
@@ -73,7 +76,7 @@ function typeMessage(message) {
     typing = true;
 
     const textElement = document.getElementById("text");
-    const sound = document.getElementById("typeSound");
+    const sound = document.getElementById("TypeSound");
 
     textElement.innerText = "";
 
@@ -106,7 +109,6 @@ document.body.addEventListener("click", () => {
     if (index >= messages.length) {
         index = 0;
     }
-
 });
 
 </script>

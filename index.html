@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prescript Terminal</title>
+
+    <style>
+        body {
+            background: black;
+            color: hotpink;
+            font-family: monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .box {
+            border: 2px solid hotpink;
+            padding: 30px;
+            width: 500px;
+            text-align: center;
+
+            box-shadow: 0 0 20px hotpink;
+
+            animation: flicker 0.1s infinite alternate;
+        }
+
+        h1 {
+            text-shadow: 0 0 10px hotpink;
+        }
+
+        #text {
+            min-height: 60px;
+        }
+
+        @keyframes flicker {
+            from { opacity: 1; }
+            to { opacity: 0.85; }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+    <h1>PRESCRIPT RECEIVED</h1>
+    <p id="text">Click anywhere to continue.</p>
+</div>
+
+<!-- Typing Sound -->
+<audio id="typeSound">
+    <source src="Prescript.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+const messages = [
+    "Await further instructions.",
+    "Do not look behind you.",
+    "Proceed to the designated corridor.",
+    "The Prescript has acknowledged your compliance.",
+    "Further observation is unnecessary."
+];
+
+let index = 0;
+let typing = false;
+
+function typeMessage(message) {
+
+    if (typing) return;
+
+    typing = true;
+
+    const textElement = document.getElementById("text");
+    const sound = document.getElementById("typeSound");
+
+    textElement.innerText = "";
+
+    let i = 0;
+
+    const interval = setInterval(() => {
+
+        textElement.innerText += message[i];
+
+        sound.currentTime = 0;
+        sound.play();
+
+        i++;
+
+        if (i >= message.length) {
+            clearInterval(interval);
+            typing = false;
+        }
+
+    }, 50); // typing speed
+
+}
+
+document.body.addEventListener("click", () => {
+
+    typeMessage(messages[index]);
+
+    index++;
+
+    if (index >= messages.length) {
+        index = 0;
+    }
+
+});
+
+</script>
+
+</body>
+</html>
